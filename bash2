@@ -1,0 +1,22 @@
+
+echo "\n"
+echo ">>r for rm & a for again"
+read choice
+
+if [ $choice = "r" ]
+then
+	rm test
+	clear
+	vim Glist.cc
+
+elif [ $choice = "a" ]; then
+	clear 
+	./test
+	sleep 2 
+	rm test
+	clear
+	vim Glist.cc
+else
+	exit 1
+fi
+exit 0
