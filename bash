@@ -16,7 +16,7 @@ then
 	echo "\n"
 	echo "enter for rm & a for again"
 	read var
-	if  [ $var="a" ] # on both sizes of = there shouldn.t has space
+	if  [ $var = "a" ] # on both sizes of = there shouldn has space
 	then
 		clear
 		./test
