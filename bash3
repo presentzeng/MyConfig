@@ -1,0 +1,27 @@
+#!/bin/sh
+
+frm()
+{
+        for i in .*
+        do
+        if [ $i != ".git" ]
+        then
+                rm  $i -rf
+        fi
+        done
+}
+
+if test -f test
+then
+        frm
+        clear
+        ./test
+        read choice
+        rm test
+else
+        frm
+        ./test
+        read choice
+        rm test
+        clear
+fi
