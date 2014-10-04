@@ -1,0 +1,24 @@
+src=main.c
+objects=$(src:.c=.o)
+test:$(objects)
+        gcc -o test $(objects)
+        rm  $(objects)
+main.o:main.c
+        gcc -c  main.c -o main.o
+
+
+
+src :=./src
+inc :=./include
+obj :=$(wildcard $(src)/*.c)
+cc :=gcc
+$(exe)/a.out:$(obj)
+        $(cc) -o $@ $^ -I $(inc)
+
+
+all:test main
+.PHONY:all
+test:test.c
+        gcc -o $@ $<
+main:main.c
+        gcc -o $@ $<
