@@ -1,0 +1,14 @@
+
+!xev -pke
+remove Lock = Caps_Lock
+remove Control = Control_L
+keysym Control_L = Caps_Lock
+keysym Caps_Lock = Control_L
+add Lock = Caps_Lock
+add Control = Control_L
+
+
+keycode  22 = backslash bar backslash bar NoSymbol NoSymbol NoSymbol NoSymbol NoSymbol NoSymbol backslash bar NoSymbol NoSymbol NoSymbol backslash bar
+
+
+keycode  51 = BackSpace BackSpace BackSpace BackSpace NoSymbol NoSymbol Terminate_Server
