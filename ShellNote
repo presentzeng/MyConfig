@@ -1,0 +1,10 @@
+export PS1=''
+
+/w  current dir 
+/W  current dir basename
+/s  shell's name
+$PATH absolute path
+/u  current user
+
+recommend : export PS1='[\w@]'
+or 	  : export PS1='[\u@\W]'
