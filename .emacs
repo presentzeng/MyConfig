@@ -1,18 +1,50 @@
-;;f5 to start mit-scheme
 (setq scheme-program-name "mit-scheme")
-(add-hook 'scheme-mode-hook
-(lambda ()
-(local-set-key (kbd "<f5>") 'run-scheme-in-emacs)))
+
+
+(define-key global-map (kbd "C-q") 'scheme-send-last-sexp-split-window)
+
+;; bypass the interactive question and start the default interpreter
+(defun scheme-proc ()
+  "Return the current Scheme process, starting one if necessary."
+  (unless (and scheme-buffer
+               (get-buffer scheme-buffer)
+               (comint-check-proc scheme-buffer))
+    (save-window-excursion
+      (run-scheme scheme-program-name)))
+  (or (scheme-get-process)
+      (error "No current process. See variable `scheme-buffer'")))
+
+(defun scheme-split-window ()
+  (cond
+   ((= 1 (count-windows))
+    (delete-other-windows)
+    (split-window-vertically (floor (* 0.4 (window-height))))
+    )))
+
+
+(defun scheme-send-last-sexp-split-window ()
+  (interactive)
+  (scheme-split-window)
+  (run-scheme-in-emacs )
+  (other-window 1)
+  )
+
+
 
 (defun run-scheme-in-emacs ()
 (interactive)
 (let ((file-name (buffer-file-name)))
 (progn
 (run-scheme scheme-program-name)
-
 (scheme-load-file file-name))))
 
-;
+
+
+
+
+
+
+
 ;
 ;(ren match
 (show-paren-mode 1)
@@ -226,13 +258,8 @@ If no parse state is supplied, compute one from the beginning of the
 
 
 
-
-
-
-
-
 ;;C-x l
-(define-key global-map (kbd "C-x l") 'paredit-forward-slurp-sexp )
+(define-key global-map (kbd "C-]") 'paredit-forward-slurp-sexp )
 
 (defun paredit-backward-barf-sexp (&optional argument)
   "Remove the first S-expression in the current list from that list
@@ -389,7 +416,9 @@ If TRAILING-P is nil, skip leading whitespace; otherwise, skip trailing
 
 
 
-(define-key global-map (kbd "C-x h") 'paredit-forward-barf-sexp)
+
+
+(define-key global-map (kbd "C-p") 'paredit-forward-barf-sexp)
 
 
 
@@ -453,5 +482,3 @@ Automatically reindent the newly barfed S-expression with respect to
   (let ((start (point)))
     (forward-sexp n)
     (indent-region start (point) nil)))
-
-
