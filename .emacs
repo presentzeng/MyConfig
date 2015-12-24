@@ -99,7 +99,7 @@
 (define-key global-map (kbd "M-[ ") 'down-list)
 (define-key global-map (kbd "M-] ") 'up-list)
 
-(define-key global-map (kbd "C-x l ") 'recenter)
+(define-key global-map (kbd "C-a ") 'recenter)
 
 ;;gg G
 (define-key global-map (kbd "M-k ") 'beginning-of-buffer)
@@ -141,6 +141,13 @@
 (interactive)
 (move-end-of-line 1)
 (newline)))
+
+
+(global-set-key (kbd "C-u") '(lambda ()
+(interactive)
+(move-beginning-of-line 1)
+(newline)
+(previous-line)))
 
 ;;tab
 ;;(global-set-key (kbd "TAB") '(lambda () (interactive) (insert-char 9 1)))
@@ -418,7 +425,7 @@ If TRAILING-P is nil, skip leading whitespace; otherwise, skip trailing
 
 
 
-(define-key global-map (kbd "C-p") 'paredit-forward-barf-sexp)
+(define-key global-map (kbd "C-]") 'paredit-forward-barf-sexp)
 
 
 
