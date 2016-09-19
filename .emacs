@@ -99,7 +99,7 @@
 (define-key global-map (kbd "M-[ ") 'down-list)
 (define-key global-map (kbd "M-] ") 'up-list)
 
-(define-key global-map (kbd "C-a ") 'recenter)
+(define-key global-map (kbd "C-m ") 'recenter)
 
 ;;gg G
 (define-key global-map (kbd "M-k ") 'beginning-of-buffer)
